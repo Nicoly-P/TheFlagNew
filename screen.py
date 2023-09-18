@@ -1,5 +1,6 @@
 import pygame
 import consts as cs
+import random
 
 pygame.init()
 
@@ -13,6 +14,19 @@ font = pygame.font.Font('freesansbold.ttf', 10)
 text = font.render(cs.TITLE_TEXT, True, cs.WHITE)
 textRect = text.get_rect()
 textRect.center = (200, 50)
+bush_image = 'grass.png'
+for bush in range(cs.NUM_OF_BUSHES):
+    random_bush_x = random.randint(0,997)
+    random_bush_y = random.randint(0,497)
+    # bush = pygame.image.load(bush_image)
+    # display_surface.blit(bush, (random_bush_y,random_bush_x))
+    pygame.display.set_caption('Image’s Caption.')
+    displayImage = pygame.image.load(bush_image)
+
+    # DEFAULT_IMAGE_SIZE = (3, 3)
+    # image = pygame.transform.scale(bush_image, DEFAULT_IMAGE_SIZE)
+
+
 
 while True:
     display_surface.fill(cs.GRASS_COLOR)
@@ -25,8 +39,10 @@ while True:
 
         pygame.display.update()
 
-# importing required library
-# import pygame
+
+
+
+
 # pygame.init()
 # X = 600
 # Y = 600
@@ -43,3 +59,7 @@ while True:
 #             status = False
 #
 # pygame.quit()
+#
+#
+# for bush in range(cs.NUM_OF_BUSHES):
+#
