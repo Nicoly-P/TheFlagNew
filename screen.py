@@ -1,26 +1,21 @@
 import pygame
+import consts as cs
 
 pygame.init()
 
+cs.WHITE = (255, 255, 255)
+cs.GRASS_COLOR = (1, 70, 25)
+cs.TITLE_TEXT = "Welcome to The Flag game. Have Fun!"
 
-white = (255, 255, 255)
-grass_color = (1, 70, 25)
-TITLE_TEXT = "Welcome to The Flag game. Have Fun!"
-
-
-X = 1000
-Y = 500
-
-
-display_surface = pygame.display.set_mode((X, Y))
+display_surface = pygame.display.set_mode((cs.SCREEN_WIDTH, cs.SCREEN_HEIGHT))
 pygame.display.set_caption('Show Text')
 font = pygame.font.Font('freesansbold.ttf', 10)
-text = font.render(TITLE_TEXT, True, white)
+text = font.render(cs.TITLE_TEXT, True, cs.WHITE)
 textRect = text.get_rect()
 textRect.center = (200, 50)
 
 while True:
-    display_surface.fill(grass_color)
+    display_surface.fill(cs.GRASS_COLOR)
     display_surface.blit(text, textRect)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
