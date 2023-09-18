@@ -1,3 +1,5 @@
+import pygame.image
+
 GAME_FIELD_ROWS = 25
 GAME_FIELD_COLS = 50
 LANDMINE_HEIGHT = 1
@@ -7,10 +9,17 @@ SOLDIER_WIDTH = 2
 FLAG_HEIGHT = 3
 FLAG_WIDTH = 4
 
+SOLDIER_X_WIDTH = 40
+SOLDIER_Y_HEIGHT = 80
+SOLDIER_STARTING_LOC_X = 0
+SOLDIER_STARTING_LOC_Y = 0
+SOLDIER_IMAGE = pygame.image.load('soldier.png')
+SOLDIER = pygame.transform.scale(SOLDIER_IMAGE, (80, 80))
+
 CELL_SIDE_LENGTH = 20  # cell is squared
 TITLE_TEXT = 'Welcome to The Flag game. Have Fun!'
 WHITE = (255, 255, 255)
 GRASS_COLOR = (1, 70, 25)
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 500
-
+BACKGROUND_COLOR = (1, 70, 25)

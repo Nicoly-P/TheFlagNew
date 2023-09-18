@@ -1,7 +1,15 @@
 import consts as cs
 import game_field as gf
-SOLDIER = gf.matrix_generator(cs.SOLDIER_HEIGHT, cs.SOLDIER_WIDTH, 'soldier')
 
-SOLDIER_UPPER_BODY = SOLDIER[0:3]
-SOLDIER_LEGS = SOLDIER[3:4]
+
+def create_soldier(image, left_upper_corner_x, left_upper_corner_y):
+    soldier = {'soldier_image': image,
+               'soldier_position_x': left_upper_corner_x,
+               'soldier_position_y': left_upper_corner_y
+               }
+    return soldier
+
+
+
 def touch_flag():  # returns true if touching flag
+    pass
