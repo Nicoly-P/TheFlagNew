@@ -6,10 +6,7 @@ SOLDIER_HEIGHT = 4
 SOLDIER_WIDTH = 2
 FLAG_HEIGHT = 3
 FLAG_WIDTH = 4
-game_field_matrix = [['grass'] * GAME_FIELD_COLS] * GAME_FIELD_ROWS
-LANDMINE = [['landmine'] * LANDMINE_WIDTH] * LANDMINE_HEIGHT
-SOLDIER = [['soldier'] * SOLDIER_WIDTH] * SOLDIER_HEIGHT
-FLAG = [['flag'] * FLAG_WIDTH] * FLAG_HEIGHT
+
 CELL_SIDE_LENGTH = 20  # cell is squared
 TITLE_TEXT = 'Welcome to The Flag game. Have Fun!'
 WHITE = (255, 255, 255)
