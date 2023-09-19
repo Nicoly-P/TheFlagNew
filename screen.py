@@ -20,7 +20,7 @@ def draw_object(display_surface,soldier_rect,flag_rect,bush_loc):
     display_surface.fill(cs.GRASS_COLOR)
     for bush in bush_loc:
         display_surface.blit(cs.BUSH, (bush[0], bush[1]))
-    font = pygame.font.Font('freesansbold.ttf', 10)
+    font = pygame.font.Font('freesansbold.ttf', 12)
     text = font.render(cs.TITLE_TEXT, True, cs.WHITE)
     textRect = text.get_rect()
     textRect.center = (200, 50)
@@ -28,21 +28,31 @@ def draw_object(display_surface,soldier_rect,flag_rect,bush_loc):
     display_surface.blit(cs.SOLDIER, (soldier_rect.x, soldier_rect.y))
     display_surface.blit(cs.FLAG, (flag_rect.x, flag_rect.y))
     pygame.display.update()
-# importing required library
-# import pygame
-# pygame.init()
-# X = 600
-# Y = 600
-#
-# scrn = pygame.display.set_mode((X, Y))
-# pygame.display.set_caption('image')
-# imp = pygame.image.load("grass.png").convert()
-# scrn.blit(imp, (0, 0))
-# pygame.display.flip()
-# status = True
-# while (status):
-#     for i in pygame.event.get():
-#         if i.type == pygame.QUIT:
-#             status = False
-#
-# pygame.quit()
+
+
+
+SCREEN_WIDTH = 1000
+SCREEN_HEIGHT = 500
+NUM_OF_REPEATS_HEIGHT = 25
+NUM_OF_REPEATS_WIDTH = 50
+INITIAL_START_OF_LINE = 20
+
+def creat_grid(SCREEN_WIDTH, SCREEN_HEIGHT, NUM_OF_REPEATS_HEIGHT, NUM_OF_REPEATS_WIDTH, INITIAL_START_OF_LINE):
+    pygame.init()
+    window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    window.fill((0, 0, 0))
+    pygame.display.update()
+    for i in range(NUM_OF_REPEATS_HEIGHT):
+        pygame.draw.line(window, (1, 70, 25),
+                        [0, INITIAL_START_OF_LINE * i + 20],
+                        [1000, INITIAL_START_OF_LINE * i + 20], 2)
+        pygame.display.update()
+    for i in range(NUM_OF_REPEATS_WIDTH):
+        pygame.draw.line(window, (1, 70, 25),
+                        [INITIAL_START_OF_LINE * i + 20, 0],
+                        [INITIAL_START_OF_LINE * i + 20, 1000], 2)
+        pygame.display.update()
+    return
+
+creat_grid(1000, 500, 25, 50, 20)
+
