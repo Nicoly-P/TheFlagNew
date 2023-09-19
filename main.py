@@ -2,41 +2,46 @@ import pygame
 import game_field as gf
 import consts as cs
 import soldier as sldr
-
-pygame.init()
-
-screen = pygame.display.set_mode((cs.SCREEN_WIDTH, cs.SCREEN_HEIGHT))
-screen.fill(cs.BACKGROUND_COLOR)
-pygame.display.flip()
-
-soldier_rect = pygame.Rect(cs.SOLDIER_STARTING_LOC_X, cs.SOLDIER_STARTING_LOC_Y, cs.SOLDIER_X_WIDTH, cs.SOLDIER_Y_HEIGHT)
+import screen as scrn
 
 
 def main():
+    scrn.draw_screen_window()
+    soldier_rect = pygame.Rect(cs.SOLDIER_STARTING_LOC_X, cs.SOLDIER_STARTING_LOC_Y, cs.SOLDIER_X_WIDTH,
+                               cs.SOLDIER_Y_HEIGHT)
+    flag_rect = pygame.Rect(cs.FLAG_LOC_X, cs.FLAG_LOC_Y, cs.FLAG_X_WIDTH, cs.FLAG_Y_HEIGHT)
+    clock = pygame.time.Clock()
     running = True
     while running:
-        running = handle_user_events(running)
+        clock.tick(cs.FPS)
 
-        screen.blit(cs.SOLDIER, (soldier_rect.x, soldier_rect.y))
+        running = handle_user_events(running, soldier_rect)
 
+        scrn.draw_object(scrn.display_surface,soldier_rect,flag_rect)
         pygame.display.update()
     pygame.quit()
 
-def handle_user_events(running):
+
+def handle_user_events(running,soldier_rect):
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_KP_ENTER:
                 pass  # show landmine screen
             if event.key == pygame.K_UP:
-                soldier_rect.y -= cs.CELL_SIDE_LENGTH
+                if soldier_rect.y > 0:
+                    soldier_rect.y -= cs.CELL_SIDE_LENGTH
             if event.key == pygame.K_DOWN:
-                soldier_rect.y += cs.CELL_SIDE_LENGTH
+                if soldier_rect.y < (cs.SCREEN_HEIGHT - cs.SOLDIER_Y_HEIGHT):
+                    soldier_rect.y += cs.CELL_SIDE_LENGTH
             if event.key == pygame.K_LEFT:
-                soldier_rect.x -= cs.CELL_SIDE_LENGTH
+                if soldier_rect.x > -cs.CELL_SIDE_LENGTH:
+                    soldier_rect.x -= cs.CELL_SIDE_LENGTH
             if event.key == pygame.K_RIGHT:
-                soldier_rect.x += cs.CELL_SIDE_LENGTH
+                if soldier_rect.x < (cs.SCREEN_WIDTH - 2*cs.SOLDIER_X_WIDTH):
+                    soldier_rect.x += cs.CELL_SIDE_LENGTH
         if event.type == pygame.QUIT:
             running = False  # game loop 'while running'
     return running
+
 
 main()
