@@ -55,4 +55,22 @@ def creat_grid(SCREEN_WIDTH, SCREEN_HEIGHT, NUM_OF_REPEATS_HEIGHT, NUM_OF_REPEAT
     return
 
 creat_grid(1000, 500, 25, 50, 20)
+#  nicole
+def create_grid(display_screen, SCREEN_WIDTH, SCREEN_HEIGHT, HEIGHT, WIDTH, CELL_WIDTH):
+    display_screen.fill((0, 0, 0))
+    for i in range(HEIGHT):
+        pygame.draw.line(display_screen, (1, 70, 25),
+                        [0, CELL_WIDTH * i + CELL_WIDTH],
+                        [WIDTH, CELL_WIDTH * i + CELL_WIDTH], 2)
+        pygame.display.update()
+    for j in range(WIDTH):
+        pygame.draw.line(display_screen, (1, 70, 25),
+                        [CELL_WIDTH * j + CELL_WIDTH, 0],
+                        [CELL_WIDTH * j + CELL_WIDTH, WIDTH], 2)
+        pygame.display.update()
+    pygame.display.update()
 
+
+while True:
+    create_grid(display_surface, cs.SCREEN_WIDTH, cs.SCREEN_HEIGHT, cs.GAME_FIELD_ROWS,
+                     cs.GAME_FIELD_COLS, cs.CELL_SIDE_LENGTH)
