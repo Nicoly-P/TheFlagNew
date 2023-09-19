@@ -55,4 +55,3 @@ def creat_grid(SCREEN_WIDTH, SCREEN_HEIGHT, NUM_OF_REPEATS_HEIGHT, NUM_OF_REPEAT
     return
 
 creat_grid(1000, 500, 25, 50, 20)
-

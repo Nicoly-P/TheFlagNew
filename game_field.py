@@ -1,6 +1,8 @@
 import consts as cs
 import random
 import screen
+import pygame
+import math
 
 def matrix_generator(row_num, col_num, value):
     matrix = []
@@ -15,27 +17,41 @@ def matrix_generator(row_num, col_num, value):
 game_field = matrix_generator(25,50,'grass')
 
 
+# mine_x_list = random.sample(range(math.floor(cs.GAME_FIELD_COLS - cs.MINE_WIDTH / cs.CELL_SIDE_LENGTH)), 20)
+# mine_y_list = random.sample(range(math.floor(cs.GAME_FIELD_ROWS - cs.MINE_HEIGHT / cs.CELL_SIDE_LENGTH)), 20)
+# print(mine_x_list)
+# print(mine_y_list)
+# for i in range(len(mine_x_list)):
+
 # def random_mine():
-mine_loc = []
+mine_list = []
 for mine in range(cs.NUM_OF_MINES):
     random_mine_x = random.randint(0, cs.GAME_FIELD_COLS - cs.MINE_WIDTH / cs.CELL_SIDE_LENGTH)
     random_mine_y = random.randint(0, cs.GAME_FIELD_ROWS - cs.MINE_HEIGHT / cs.CELL_SIDE_LENGTH)
-    game_field[random_mine_y][random_mine_x] = "mine"
+    if (random_mine_y,random_mine_x) not in mine_list:
+        mine_list.append([random_mine_y,random_mine_x])
+        game_field[random_mine_y][random_mine_x] = "mine"
+    else:
+        while (random_mine_y,random_mine_x) not in mine_list:
+            random_mine_x2 = random.randint(0, cs.GAME_FIELD_COLS - cs.MINE_WIDTH / cs.CELL_SIDE_LENGTH)
+            random_mine_y2 = random.randint(0, cs.GAME_FIELD_ROWS - cs.MINE_HEIGHT / cs.CELL_SIDE_LENGTH)
+        game_field[random_mine_y][random_mine_x] = "mine"
+        mine_list.append([random_mine_y2,random_mine_x2])
+print(mine_list)
 
-    # game_field.append([random_mine_y,random_mine_x])
 
 
 
 
-screen.creat_grid(cs.SCREEN_WIDTH, cs.SCREEN_HEIGHT, cs.NUM_OF_REPEATS_HEIGHT, cs.NUM_OF_REPEATS_WIDTH, cs.INITIAL_START_OF_LINE)
-for row in game_field:
-    for col in row:
-        if game_field[game_field.index(row)][row.index(col)] == "mine":
-            mine_pixel_x = row * cs.CELL_SIDE_LENGTH
-            mine_pixel_y = col * cs.CELL_SIDE_LENGTH
+secret_screen = screen.creat_grid(cs.SCREEN_WIDTH, cs.SCREEN_HEIGHT, cs.NUM_OF_REPEATS_HEIGHT, cs.NUM_OF_REPEATS_WIDTH, cs.INITIAL_START_OF_LINE)
+mine_pixels = []
+for mine in mine_list:
+        # mine_pixel_y = mine[0] * cs.CELL_SIDE_LENGTH
+        # mine_pixel_x = mine[1] * cs.CELL_SIDE_LENGTH
+        # mine_pixels.append([mine_pixel_y, mine_pixel_x])
+        secret_screen.blit(cs.MINE, (mine[0] * cs.CELL_SIDE_LENGTH , mine[1] * cs.CELL_SIDE_LENGTH))
+        scrn.draw_object(mine)
+        pygame.display.update()
+        pygame.display.flip()
+print(mine_pixels)
 
-#
-#             for bush in bush_loc:
-#                 display_surface.blit(cs.BUSH, (bush[0], bush[1]))
-# cs.SCREEN_WIDTH - cs.MINE_WIDTH
-# (0, cs.SCREEN_HEIGHT-cs.MINE_HEIGHT)
