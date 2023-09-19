@@ -6,7 +6,7 @@ import screen as scrn
 
 
 def main():
-    scrn.draw_screen_window()
+    bush_loc = scrn.bush_placement()
     soldier_rect = pygame.Rect(cs.SOLDIER_STARTING_LOC_X, cs.SOLDIER_STARTING_LOC_Y, cs.SOLDIER_X_WIDTH,
                                cs.SOLDIER_Y_HEIGHT)
     flag_rect = pygame.Rect(cs.FLAG_LOC_X, cs.FLAG_LOC_Y, cs.FLAG_X_WIDTH, cs.FLAG_Y_HEIGHT)
@@ -17,7 +17,7 @@ def main():
 
         running = handle_user_events(running, soldier_rect)
 
-        scrn.draw_object(scrn.display_surface,soldier_rect,flag_rect)
+        scrn.draw_object(scrn.display_surface,soldier_rect,flag_rect,bush_loc)
         pygame.display.update()
     pygame.quit()
 

@@ -6,20 +6,25 @@ pygame.init()
 
 display_surface = pygame.display.set_mode((cs.SCREEN_WIDTH, cs.SCREEN_HEIGHT))
 
-def draw_screen_window():
+
+def bush_placement():
+    bush_loc = []
+    for bush in range(cs.NUM_OF_BUSHES):
+        random_bush_x = random.randint(0, cs.SCREEN_WIDTH-cs.BUSH_WIDTH)
+        random_bush_y = random.randint(0, cs.SCREEN_HEIGHT-cs.BUSH_WIDTH)
+        bush_loc.append([random_bush_x,random_bush_y])
+    return bush_loc
+
+
+def draw_object(display_surface,soldier_rect,flag_rect,bush_loc):
     display_surface.fill(cs.GRASS_COLOR)
-    for bush in range(0, cs.NUM_OF_BUSHES):
-        random_bush_x = random.randint(0, cs.SCREEN_WIDTH - cs.BUSH_WIDTH)
-        random_bush_y = random.randint(0, cs.SCREEN_HEIGHT - cs.BUSH_WIDTH)
-        display_surface.blit(cs.BUSH, (random_bush_x, random_bush_y))
+    for bush in bush_loc:
+        display_surface.blit(cs.BUSH, (bush[0], bush[1]))
     font = pygame.font.Font('freesansbold.ttf', 10)
     text = font.render(cs.TITLE_TEXT, True, cs.WHITE)
     textRect = text.get_rect()
     textRect.center = (200, 50)
     display_surface.blit(text, textRect)
-    pygame.display.flip()
-
-def draw_object(display_surface,soldier_rect,flag_rect):
     display_surface.blit(cs.SOLDIER, (soldier_rect.x, soldier_rect.y))
     display_surface.blit(cs.FLAG, (flag_rect.x, flag_rect.y))
     pygame.display.update()
