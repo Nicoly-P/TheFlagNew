@@ -25,6 +25,50 @@ while True:
 
         pygame.display.update()
 
+
+
+
+SCREEN_WIDTH = 1000
+SCREEN_HEIGHT = 500
+NUM_OF_REPEATS_HEIGHT = 25
+NUM_OF_REPEATS_WIDTH = 50
+INITIAL_START_OF_LINE = 20
+
+import pygame
+def creat_grid(SCREEN_WIDTH, SCREEN_HEIGHT, NUM_OF_REPEATS_HEIGHT, NUM_OF_REPEATS_WIDTH, INITIAL_START_OF_LINE):
+    pygame.init()
+    window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    window.fill((0, 0, 0))
+    pygame.display.update()
+    for i in range(NUM_OF_REPEATS_HEIGHT):
+        pygame.draw.line(window, (1, 70, 25),
+                        [0, INITIAL_START_OF_LINE * i + 20],
+                        [1000, INITIAL_START_OF_LINE * i + 20], 2)
+        pygame.display.update()
+    for i in range(NUM_OF_REPEATS_WIDTH):
+        pygame.draw.line(window, (1, 70, 25),
+                        [INITIAL_START_OF_LINE * i + 20, 0],
+                        [INITIAL_START_OF_LINE * i + 20, 1000], 2)
+        pygame.display.update()
+    return
+
+creat_grid(1000, 500, 25, 50, 20)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
 # importing required library
 # import pygame
 # pygame.init()
